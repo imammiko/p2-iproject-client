@@ -1,16 +1,21 @@
 <template>
-	<div
-		class="gauge"
-		v-bind:style="{
-			width: 200 + 'px',
-			'--rotation': sensorRealTime.humidity * (180 / 100) + 'deg',
-			'--color': '#5cb85c',
-			'--background': '#e9ecef',
-		}"
-	>
-		<div class="percentage"></div>
-		<div class="mask"></div>
-		<span class="value">{{ sensorRealTime.humidity }}%</span>
+	<div style="height: 400px; margin: 30px" class="d-flex align-items-center">
+		<div class="d-flex flex-column">
+			<div
+				class="gauge d-inline-block"
+				v-bind:style="{
+					width: 200 + 'px',
+					'--rotation': sensorRealTime.humidity * (180 / 100) + 'deg',
+					'--color': '#5cb85c',
+					'--background': '#e9ecef',
+				}"
+			>
+				<div class="percentage"></div>
+				<div class="mask"></div>
+				<span class="value">{{ sensorRealTime.humidity }}%</span>
+			</div>
+			<h3 style="margin: auto">Humidity</h3>
+		</div>
 	</div>
 </template>
 

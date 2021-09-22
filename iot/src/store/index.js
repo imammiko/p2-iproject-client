@@ -15,6 +15,7 @@ export default new Vuex.Store({
 		dataLamp: {},
 		dataRealTime: {},
 		statusLampu: "on",
+		weather: {},
 	},
 	mutations: {
 		SET_DATA_SENSOR_TEMPERATURE(state, payload) {
@@ -29,8 +30,21 @@ export default new Vuex.Store({
 		SET_REAL_TIME_DATA(state, payload) {
 			state.dataRealTime = payload;
 		},
+		SET_weather(state, payload) {
+			state.weather = payload;
+		},
 	},
 	actions: {
+		async fetchWeather(context) {
+			instance
+				.get("weather")
+				.then((data) => {
+					context.commit("SET_weather", data.data.weather);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		},
 		async fetchDataLamp(context) {
 			instance
 				.get("/controlLampu")

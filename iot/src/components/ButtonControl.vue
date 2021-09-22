@@ -1,13 +1,7 @@
 <template>
-	<div>
-		<button
-			type="button"
-			class="btn btn-primary btn-lg"
-			v-on:click="statusLampu == 1 ? sentStatusLamp(0) : sentStatusLamp(1)"
-		>
-			{{ statusLampu == 1 ? "OFF" : "ON" }}
-		</button>
+	<div class="d-flex flex-column justify-content-center">
 		<img
+			style="margin-top: 20px; margin-bottom: 20px"
 			v-bind:src="
 				statusLampu == 1
 					? 'https://ik.imagekit.io/fquftlqurx6/lampOn_onpdKIMsq.png?updatedAt=1632292006177'
@@ -16,6 +10,14 @@
 			alt="lamp"
 			width="100"
 		/>
+		<button
+			style="width: 200px; margin-bottom: 20px"
+			type="button"
+			class="btn btn-primary btn-lg"
+			v-on:click="statusLampu == 1 ? sentStatusLamp(0) : sentStatusLamp(1)"
+		>
+			{{ statusLampu == 1 ? "OFF" : "ON" }}
+		</button>
 	</div>
 </template>
 

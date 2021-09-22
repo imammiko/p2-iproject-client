@@ -55,7 +55,7 @@ export default {
 	/* color: #d4d4d4; */
 	font-size: 30px;
 	width: 80px;
-	margin: 0 auto;
+
 	position: relative;
 	text-align: center;
 }
