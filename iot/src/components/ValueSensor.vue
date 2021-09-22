@@ -32,14 +32,10 @@
 
 <script>
 import VeLine from "v-charts/lib/line.common";
-import io from "socket.io-client";
-var socket = io.connect("http://localhost:3000", {
-	transports: ["websocket", "polling", "flashsocket"],
-});
+
 export default {
 	name: "ValueTemperature",
 	created() {
-		this.getRealtimeData();
 		this.$store.dispatch("fetchDataSensorTemperature", "hour");
 	},
 	data() {
@@ -48,11 +44,6 @@ export default {
 		};
 	},
 	methods: {
-		getRealtimeData() {
-			socket.on("newdataLamp", (fetchedData) => {
-				console.log(fetchedData);
-			});
-		},
 		tombolFetchData(longTime) {
 			console.log(longTime);
 			this.$store.dispatch("fetchDataSensorTemperature", longTime);

@@ -14,6 +14,7 @@ export default new Vuex.Store({
 		dataSensorHumidity: [],
 		dataLamp: {},
 		dataRealTime: {},
+		statusLampu: "on",
 	},
 	mutations: {
 		SET_DATA_SENSOR_TEMPERATURE(state, payload) {
@@ -30,6 +31,31 @@ export default new Vuex.Store({
 		},
 	},
 	actions: {
+		async fetchDataLamp(context) {
+			instance
+				.get("/controlLampu")
+				.then((data) => {
+					console.log(data.data, "<<<<<data fetch data lamp");
+					context.commit("SET_DATA_LAMP", data.data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		},
+		async sentDataLamp(context, payload) {
+			let dataKirim = {
+				lamp: +payload,
+			};
+			instance
+				.post("/controlLampu", dataKirim)
+				.then((data) => {
+					console.log(data.data, "<<<data dikrim dengan sempurna");
+					context.commit("SET_DATA_LAMP", data.data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		},
 		async fetchDataRealTime(context) {
 			instance
 				.get("/lastDataSensor")
