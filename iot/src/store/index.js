@@ -78,11 +78,45 @@ export default new Vuex.Store({
 					console.log(err);
 				});
 		},
-	},
-	getters: {
-		temperatureData: (state) => {
-			return state.dataSensorTemperature;
+		async fetchDataSensorHumidity(context, payload) {
+			payload = payload.toLowerCase();
+			instance
+				.get(`/dataSensorHumidity?rangeData=${payload}`)
+				.then((data) => {
+					data = data.data;
+					function compare(a, b) {
+						// Use toUpperCase() to ignore character casing
+						const hourA = a[payload];
+						const hourB = b[payload];
+
+						let comparison = 0;
+						if (hourA > hourB) {
+							comparison = 1;
+						} else if (hourA < hourB) {
+							comparison = -1;
+						}
+						return comparison;
+					}
+					data = data.sort(compare);
+
+					data = data.map((el) => {
+						let dataSplit = el[payload].split("");
+						let indexT = dataSplit.findIndex((el) => el == "T");
+						dataSplit.splice(indexT, 1, " ");
+						let indexDot = dataSplit.findIndex((el) => el == ".");
+						dataSplit.splice(indexDot);
+						let dataJoin = dataSplit.join("");
+						el[payload] = dataJoin;
+						return el;
+					});
+					console.log(data, "<<<<", payload);
+					context.commit("SET_DATA_SENSOR_HUMIDITY", data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		},
 	},
+
 	modules: {},
 });

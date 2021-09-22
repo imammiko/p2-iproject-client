@@ -1,6 +1,7 @@
 <template>
 	<div class="home">
 		<value-sensor></value-sensor>
+		<value-sensor-humidity></value-sensor-humidity>
 		<chart-temperatur></chart-temperatur>
 		<gauge-humidity></gauge-humidity>
 		<button-control></button-control>
@@ -14,8 +15,15 @@ import ValueSensor from "../components/ValueSensor.vue";
 import ChartTemperatur from "../components/ChartTemperatur.vue";
 import GaugeHumidity from "../components/GaugeHumidity.vue";
 import ButtonControl from "../components/ButtonControl.vue";
+import ValueSensorHumidity from "../components/ValueSensorHumidity.vue";
 export default {
 	name: "Home",
-	components: { ValueSensor, ChartTemperatur, GaugeHumidity, ButtonControl },
+	components: {
+		ValueSensor,
+		ChartTemperatur,
+		GaugeHumidity,
+		ButtonControl,
+		ValueSensorHumidity,
+	},
 };
 </script>
