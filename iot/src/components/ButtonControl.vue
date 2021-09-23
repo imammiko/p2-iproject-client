@@ -1,5 +1,8 @@
 <template>
-	<div class="d-flex flex-column justify-content-center">
+	<div
+		class="d-flex flex-column justify-content-center align-content-center"
+		style="width: 100%; justify-content: center; align-items: center"
+	>
 		<img
 			style="margin-top: 20px; margin-bottom: 20px"
 			v-bind:src="
@@ -22,6 +25,7 @@
 </template>
 
 <script>
+//  git merge --no-ff
 import io from "socket.io-client";
 var socket = io.connect("http://localhost:3000", {
 	transports: ["websocket", "polling", "flashsocket"],

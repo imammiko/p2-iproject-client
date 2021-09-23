@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import axios from "axios";
 Vue.use(Vuex);
 
-let baseUrl = "http://localhost:3000";
+let baseUrl = "https://iot-imammiko-individual.herokuapp.com";
 const instance = axios.create({
 	baseURL: `${baseUrl}`,
 });
